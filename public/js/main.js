@@ -1,3 +1,5 @@
+import SpriteSheet from "/js/SpriteSheet.js"
+
 function loadImage(url) {
     return new Promise(resolve => {
         const image = new Image();
@@ -6,31 +8,6 @@ function loadImage(url) {
         });
         image.src = url;
     });
-}
-
-class SpriteSheet
-{
-    constructor(image, spriteWidth, spriteHeight)
-    {
-        this.image = image;
-        this.spriteWidth = spriteWidth;
-        this.spriteHeight = spriteHeight;
-        this.tiles = new Map();
-    }
-
-    define(name, spriteX, spriteY)
-    {
-        this.tiles.set(name, { x: spriteX, y: spriteY });
-    }
-
-    draw(name, context, x, y)
-    {
-        const sprite = this.tiles.get(name);
-        context.drawImage(
-            this.image, 
-            sprite.x, sprite.y, this.spriteWidth, this.spriteHeight, 
-            x, y, this.spriteWidth, this.spriteHeight);
-    }
 }
 
 const canvas = document.getElementById("screen");
