@@ -10,9 +10,24 @@ export default class SpriteSheet
 
     define(name, xIndex, yIndex)
     {
+        this.defineTile(
+            name, 
+            xIndex * this.spriteWidth, 
+            yIndex * this.spriteHeight, 
+            this.spriteWidth, 
+            this.spriteHeight);
+    }
+
+    defineTile(name, spriteX, spriteY, spriteWidth, spriteHeight)
+    {
         this.tiles.set(
             name, 
-            { x: xIndex * this.spriteWidth, y: yIndex * this.spriteHeight });
+            { 
+                x: spriteX, 
+                y: spriteY,
+                width: spriteWidth,
+                height: spriteHeight
+            });
     }
 
     draw(name, context, x, y)
@@ -20,8 +35,8 @@ export default class SpriteSheet
         const sprite = this.tiles.get(name);
         context.drawImage(
             this.image, 
-            sprite.x, sprite.y, this.spriteWidth, this.spriteHeight, 
-            x, y, this.spriteWidth, this.spriteHeight);
+            sprite.x, sprite.y, sprite.width, sprite.height, 
+            x, y, sprite.width, sprite.height);
     }
 
     drawTile(name, context, xIndex, yIndex)
