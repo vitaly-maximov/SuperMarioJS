@@ -1,0 +1,23 @@
+{
+  "name": "super-mario-js",
+  "version": "1.0.0",
+  "description": "a project based on a video tutorial",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve ./public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitaly-maximov/SuperMarioJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitaly-maximov/SuperMarioJS/issues"
+  },
+  "homepage": "https://github.com/vitaly-maximov/SuperMarioJS#readme",
+  "dependencies": {
+    "serve": "^6.4.9"
+  }
+}
