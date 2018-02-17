@@ -23,4 +23,9 @@ export default class SpriteSheet
             sprite.x, sprite.y, this.spriteWidth, this.spriteHeight, 
             x, y, this.spriteWidth, this.spriteHeight);
     }
+
+    drawTile(name, context, xIndex, yIndex)
+    {
+        this.draw(name, context, xIndex * this.spriteWidth, yIndex * this.spriteHeight);
+    }
 }
