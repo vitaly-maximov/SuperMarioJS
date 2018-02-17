@@ -8,9 +8,11 @@ export default class SpriteSheet
         this.tiles = new Map();
     }
 
-    define(name, spriteX, spriteY)
+    define(name, xIndex, yIndex)
     {
-        this.tiles.set(name, { x: spriteX, y: spriteY });
+        this.tiles.set(
+            name, 
+            { x: xIndex * this.spriteWidth, y: yIndex * this.spriteHeight });
     }
 
     draw(name, context, x, y)
