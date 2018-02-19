@@ -1,5 +1,6 @@
 import Compositor from "/js/Compositor.js"
 import Timer from "/js/Timer.js"
+import Keyboard from "/js/Keyboard.js"
 import {loadLevel} from "/js/loaders.js"
 import {loadSprites, loadMarioSprites} from "/js/sprites.js"
 import {createBackgroundLayer, createMarioLayer} from "/js/layers.js"
@@ -29,4 +30,15 @@ Promise
             compositor.draw(context);
         }
         timer.start();
+
+        const keyboard = new Keyboard();
+
+        const spaceKey = 32;
+        keyboard.subscribe(spaceKey, state => {
+            if (state === 0) {
+                mario.jump.cancel();
+            } else {
+                mario.jump.start();
+            }
+        })
     });
