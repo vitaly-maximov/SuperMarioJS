@@ -18,6 +18,6 @@ export function createBackgroundLayer(backgrounds, sprites) {
     return context => context.drawImage(backgroundBuffer, 0, 0);
 }
 
-export function createMarioLayer(mario) {    
-    return context => mario.draw(context);
+export function createMarioLayer(entities) {    
+    return context => entities.forEach(entity => entity.draw(context));
 }
