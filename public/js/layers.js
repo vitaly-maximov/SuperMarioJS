@@ -1,19 +1,13 @@
-function drawBackground(background, context, sprites) {
-    background.ranges.forEach(([x0, x1, y0, y1]) => {
-        for (let x = x0; x < x1; ++x) {
-            for (let y = y0; y < y1; ++y) {
-                sprites.drawTile(background.tile, context, x, y);
-            }
-        }
-    });
-}
-
-export function createBackgroundLayer(backgrounds, sprites) {
+export function createBackgroundLayer(level, sprites) {
     const backgroundBuffer = document.createElement("canvas");
+    const context = backgroundBuffer.getContext("2d");
+
     backgroundBuffer.width = 400;
     backgroundBuffer.height = 240;
 
-    backgrounds.forEach(background => drawBackground(background, backgroundBuffer.getContext("2d"), sprites));
+    level.tiles.forEach((tile, x, y) => {
+        sprites.drawTile(tile.name, context, x, y);
+    });
 
     return context => context.drawImage(backgroundBuffer, 0, 0);
 }

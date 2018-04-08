@@ -1,9 +1,11 @@
 import Compositor from "/js/Compositor.js"
+import {Matrix} from "/js/math.js"
 
 export default class Level {
     constructor() {
         this.compositor = new Compositor();
         this.entities = new Set();
+        this.tiles = new Matrix();
     }
 
     update(time) {

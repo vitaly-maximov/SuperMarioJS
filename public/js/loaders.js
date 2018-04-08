@@ -12,6 +12,18 @@ export function loadImage(url) {
     });
 }
 
+function createTiles(level, backgrounds) {
+    backgrounds.forEach(background => {        
+        background.ranges.forEach(([x1, x2, y1, y2]) => {
+            for (let x = x1; x < x2; ++x) {
+                for (let y = y1; y < y2; ++y) {
+                    level.tiles.set(x, y, { name: background.tile });
+                }
+            }
+        });
+    })
+}
+
 export function loadLevel(name) {
     return Promise
         .all([
@@ -22,7 +34,9 @@ export function loadLevel(name) {
 
             const level = new Level();
 
-            level.compositor.layers.push(createBackgroundLayer(json.backgrounds, sprites));
+            createTiles(level, json.backgrounds);
+
+            level.compositor.layers.push(createBackgroundLayer(level, sprites));
             level.compositor.layers.push(createMarioLayer(level.entities));
 
             return level;
