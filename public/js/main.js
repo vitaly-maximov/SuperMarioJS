@@ -37,5 +37,14 @@ Promise
             } else {
                 mario.jump.start();
             }
-        })
+        });
+
+        ["mousedown", "mousemove"].forEach(eventName => {
+            canvas.addEventListener(eventName, event => {
+                if (event.buttons === 1) {
+                    mario.velocity.set(0, 0);
+                    mario.position.set(event.offsetX, event.offsetY);
+                }
+            });
+        });
     });

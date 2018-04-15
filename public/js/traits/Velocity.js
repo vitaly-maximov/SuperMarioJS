@@ -19,6 +19,7 @@ export default class Velocity extends Trait {
         entity.position.y += entity.velocity.y * time;
         entity.velocity.y += 2000 * time;
 
+/*
         if (y > 176)
         {
             entity.velocity.y =  0;
@@ -28,5 +29,6 @@ export default class Velocity extends Trait {
         {
             entity.position.y = 176;
         }
+        */
     }
 }

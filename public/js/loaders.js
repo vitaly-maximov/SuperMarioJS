@@ -1,5 +1,5 @@
 import Level from "/js/Level.js"
-import {createBackgroundLayer, createMarioLayer} from "/js/layers.js"
+import {createBackgroundLayer, createMarioLayer, createCollisionLayer} from "/js/layers.js"
 import {loadSprites} from "/js/sprites.js"
 
 export function loadImage(url) {
@@ -38,7 +38,8 @@ export function loadLevel(name) {
 
             level.compositor.layers.push(createBackgroundLayer(level, sprites));
             level.compositor.layers.push(createMarioLayer(level.entities));
-
+            level.compositor.layers.push(createCollisionLayer(level));
+            
             return level;
         });
 }

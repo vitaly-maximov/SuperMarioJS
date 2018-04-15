@@ -7,9 +7,10 @@ export function createMario(sprite) {
 
     mario.position.set(64, 180);
     mario.velocity.set(200, 0);
+    mario.size.set(14, 16);
 
-    mario.addTrait(new Velocity());
     mario.addTrait(new Jump());
+    mario.addTrait(new Velocity());
 
     mario.draw = function(context) {        
         sprite.draw("idle", context, this.position.x, this.position.y);
