@@ -1,7 +1,9 @@
 import Trait from "/js/Trait.js"
 
 export default class Jump extends Trait {
-    construtor() {
+    constructor() {
+        super();
+        
         this.time = 0;
     }
 

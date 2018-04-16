@@ -14,7 +14,11 @@ export default class Level {
         this.entities.forEach(entity => { 
             entity.update(time);
 
-            this.tileCollider.test(entity);
+            entity.position.x += entity.velocity.x * time;        
+            this.tileCollider.checkX(entity);
+
+            entity.position.y += entity.velocity.y * time;
+            this.tileCollider.checkY(entity);
         });
     }
 }

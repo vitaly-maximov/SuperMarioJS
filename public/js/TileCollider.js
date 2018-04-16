@@ -5,10 +5,52 @@ export default class TileCollider {
         this.tileResolver = new TileResolver(tiles);
     }
 
+    checkX(entity) {
+        let x;
+        if (entity.velocity.x > 0) {
+            x = entity.position.x + entity.size.x;
+        } else if (entity.velocity.x < 0) {
+            x = entity.position.x;
+        } else {
+            return;
+        }
+
+        const matches = this.tileResolver.searchByRanges(
+            x, x,
+            entity.position.y, entity.position.y + entity.size.y);
+
+        matches.forEach(match => {
+            if (match.tile.name !== "ground") {
+                return;
+            }
+
+            if (entity.velocity.x > 0) {
+                if (entity.position.x + entity.size.x > match.x1) {
+                    entity.position.x = match.x1 - entity.size.x;
+                    entity.velocity.x = 0;
+                }
+            } else if (entity.velocity.x < 0) {
+                if (entity.position.x < match.x2) {
+                    entity.position.x = match.x2;
+                    entity.velocity.x = 0;
+                }
+            }
+        });
+    }
+
     checkY(entity) {
+        let y;
+        if (entity.velocity.y > 0) {
+            y = entity.position.y + entity.size.y;
+        } else if (entity.velocity.y < 0) {
+            y = entity.position.y;
+        } else {
+            return;
+        }
+
         const matches = this.tileResolver.searchByRanges(
             entity.position.x, entity.position.x + entity.size.x,
-            entity.position.y, entity.position.y + entity.size.y);
+            y, y);
 
         matches.forEach(match => {
             if (match.tile.name !== "ground") {
@@ -27,9 +69,5 @@ export default class TileCollider {
                 }
             }
         });
-    }
-
-    test(entity) {
-        this.checkY(entity);
     }
 }

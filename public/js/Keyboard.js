@@ -11,7 +11,7 @@ export default class Keyboard {
                     return;
                 }
 
-                const handler = this.handlers.get(event.keyCode);
+                const handler = this.handlers.get(event.code);
                 if (handler === undefined) {
                     return;
                 }

@@ -22,11 +22,13 @@ export default class TileResolver {
 
     getByIndex(indexX, indexY) {
         const tile = this.tiles.get(indexX, indexY);
+        const x1 = indexX * this.tileSize;
+        const x2 = x1 + this.tileSize;
         const y1 = indexY * this.tileSize;
         const y2 = y1 + this.tileSize;
 
         if (tile) {
-            return { y1, y2, tile };
+            return { x1, x2, y1, y2, tile };
         }
     }
     

@@ -1,6 +1,7 @@
 import Entity from "/js/Entity.js"
 import Velocity from "/js/traits/Velocity.js"
 import Jump from "/js/traits/Jump.js"
+import Go from "/js/traits/Go.js"
 
 export function createMario(sprite) {
     const mario = new Entity();
@@ -9,6 +10,7 @@ export function createMario(sprite) {
     mario.velocity.set(200, 0);
     mario.size.set(14, 16);
 
+    mario.addTrait(new Go());
     mario.addTrait(new Jump());
     mario.addTrait(new Velocity());
 

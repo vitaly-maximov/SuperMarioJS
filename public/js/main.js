@@ -1,10 +1,11 @@
 import Compositor from "/js/Compositor.js"
 import Timer from "/js/Timer.js"
-import Keyboard from "/js/Keyboard.js"
+
 import {loadLevel} from "/js/loaders.js"
 import {loadMarioSprites} from "/js/sprites.js"
 
 import {createMario} from "/js/entities.js"
+import {setupKeyboard} from "/js/input.js"
 
 const canvas = document.getElementById("screen");
 const context = canvas.getContext("2d");
@@ -28,16 +29,7 @@ Promise
         }
         timer.start();
 
-        const keyboard = new Keyboard();
-
-        const spaceKey = 32;
-        keyboard.subscribe(spaceKey, state => {
-            if (state === 0) {
-                mario.jump.cancel();
-            } else {
-                mario.jump.start();
-            }
-        });
+        setupKeyboard(mario);
 
         ["mousedown", "mousemove"].forEach(eventName => {
             canvas.addEventListener(eventName, event => {
